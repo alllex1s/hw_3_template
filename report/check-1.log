@@ -1,0 +1,220 @@
+
+Запуск отдельного Compose-проекта
+ Image ipr-check-10166-1821727767-app Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 556B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 198B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.13-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 93B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 94B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#6 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 done
+#6 DONE 0.0s
+
+#7 [3/5] COPY app/requirements.txt .
+#7 CACHED
+
+#8 [4/5] RUN python -m pip install -r requirements.txt
+#8 CACHED
+
+#9 [2/5] WORKDIR /app
+#9 CACHED
+
+#10 [5/5] COPY app/app.py .
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:309321a4ebbbbc96c2d228af383c40461c4256868af04dbe2afd2d0c16b2bdfc done
+#11 exporting config sha256:18d33115c99d23b9edbce184e09b6a803aaa19b3dc0b71a1ca2afd84b6733cae done
+#11 exporting attestation manifest sha256:4d1a0bb77dc0a9aa6ac2188280c6b1a6ef8882ffdfd09000dcfcb899a4c05b1a done
+#11 exporting manifest list sha256:33fcc070d96a489e98eac67f620614635d9c34aaee9e449286d3b8404263ff7d done
+#11 naming to docker.io/library/ipr-check-10166-1821727767-app:latest
+#11 naming to docker.io/library/ipr-check-10166-1821727767-app:latest done
+#11 unpacking to docker.io/library/ipr-check-10166-1821727767-app:latest done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image ipr-check-10166-1821727767-app Built
+ Network ipr-check-10166-1821727767_default Creating
+ Network ipr-check-10166-1821727767_default Creating
+ Volume ipr-check-10166-1821727767_redis_data Creating
+ Volume ipr-check-10166-1821727767_redis_data Creating
+ Volume ipr-check-10166-1821727767_redis_data Created
+ Volume ipr-check-10166-1821727767_redis_data Created
+ Network ipr-check-10166-1821727767_default Created
+ Network ipr-check-10166-1821727767_default Created
+ Container ipr-check-10166-1821727767-redis-1 Creating
+ Container ipr-check-10166-1821727767-redis-1 Created
+ Container ipr-check-10166-1821727767-app-1 Creating
+ Container ipr-check-10166-1821727767-app-1 Created
+ Container ipr-check-10166-1821727767-redis-1 Starting
+ Container ipr-check-10166-1821727767-redis-1 Started
+ Container ipr-check-10166-1821727767-redis-1 Waiting
+ Container ipr-check-10166-1821727767-redis-1 Healthy
+ Container ipr-check-10166-1821727767-app-1 Starting
+ Container ipr-check-10166-1821727767-app-1 Started
+ Container ipr-check-10166-1821727767-app-1 Waiting
+ Container ipr-check-10166-1821727767-redis-1 Waiting
+ Container ipr-check-10166-1821727767-redis-1 Healthy
+ Container ipr-check-10166-1821727767-app-1 Healthy
+
+Проверка исходного значения и трёх инкрементов
+Счётчик вырос с 0 до 3
+
+Пересоздание только приложения
+ Container ipr-check-10166-1821727767-app-1 Recreate
+ Container ipr-check-10166-1821727767-app-1 Recreated
+ Container ipr-check-10166-1821727767-app-1 Starting
+ Container ipr-check-10166-1821727767-app-1 Started
+ Container ipr-check-10166-1821727767-app-1 Waiting
+ Container ipr-check-10166-1821727767-app-1 Healthy
+После пересоздания приложения count=3
+
+Остановка и повторный запуск Redis
+ Container ipr-check-10166-1821727767-redis-1 Stopping
+ Container ipr-check-10166-1821727767-redis-1 Stopped
+HTTP-коды при отказе: 200 / 503 / 503
+ Container ipr-check-10166-1821727767-redis-1 Starting
+ Container ipr-check-10166-1821727767-redis-1 Started
+После запуска Redis счётчик вырос с 3 до 4
+
+Согласованный бэкап Redis
+ Container ipr-check-10166-1821727767-app-1 Stopping
+ Container ipr-check-10166-1821727767-app-1 Stopped
+ Container ipr-check-10166-1821727767-redis-1 Stopping
+ Container ipr-check-10166-1821727767-redis-1 Stopped
+ Container ipr-check-10166-1821727767-redis-run-0dc73ef5a04f Creating
+ Container ipr-check-10166-1821727767-redis-run-0dc73ef5a04f Created
+ Container ipr-check-10166-1821727767-redis-run-8d4b3e17e098 Creating
+ Container ipr-check-10166-1821727767-redis-run-8d4b3e17e098 Created
+./
+./appendonlydir/
+./appendonlydir/appendonly.aof.1.base.rdb
+./appendonlydir/appendonly.aof.1.incr.aof
+./appendonlydir/appendonly.aof.manifest
+./dump.rdb
+
+Удаление исходного проекта и его volumes
+ Container ipr-check-10166-1821727767-app-1 Stopping
+ Container ipr-check-10166-1821727767-app-1 Stopped
+ Container ipr-check-10166-1821727767-app-1 Removing
+ Container ipr-check-10166-1821727767-app-1 Removed
+ Container ipr-check-10166-1821727767-redis-1 Stopping
+ Container ipr-check-10166-1821727767-redis-1 Stopped
+ Container ipr-check-10166-1821727767-redis-1 Removing
+ Container ipr-check-10166-1821727767-redis-1 Removed
+ Network ipr-check-10166-1821727767_default Removing
+ Volume ipr-check-10166-1821727767_redis_data Removing
+ Volume ipr-check-10166-1821727767_redis_data Removed
+ Image ipr-check-10166-1821727767-app:latest Removing
+ Image ipr-check-10166-1821727767-app:latest Removed
+ Network ipr-check-10166-1821727767_default Removed
+
+Восстановление архива в новый volume
+ Volume ipr-check-10166-1821727767-restore_redis_data Creating
+ Network ipr-check-10166-1821727767-restore_default Creating
+ Volume ipr-check-10166-1821727767-restore_redis_data Creating
+ Network ipr-check-10166-1821727767-restore_default Creating
+ Volume ipr-check-10166-1821727767-restore_redis_data Created
+ Volume ipr-check-10166-1821727767-restore_redis_data Created
+ Network ipr-check-10166-1821727767-restore_default Created
+ Network ipr-check-10166-1821727767-restore_default Created
+ Container ipr-check-10166-1821727767-restore-redis-run-7e9069cadcf5 Creating
+ Container ipr-check-10166-1821727767-restore-redis-run-7e9069cadcf5 Created
+ Image ipr-check-10166-1821727767-restore-app Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 572B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 198B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.13-slim
+#3 DONE 1.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 93B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 94B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#6 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 done
+#6 DONE 0.0s
+
+#7 [3/5] COPY app/requirements.txt .
+#7 CACHED
+
+#8 [4/5] RUN python -m pip install -r requirements.txt
+#8 CACHED
+
+#9 [2/5] WORKDIR /app
+#9 CACHED
+
+#10 [5/5] COPY app/app.py .
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:4f608d101cbf491a3b3a58d5b4845c7f05cdd9663f8c5777056540dbfbaaf5bc done
+#11 exporting config sha256:3f8a8998dd759e5c9a622f936cdf3c1e0f27d116d3f1b5b8b5df111507c09fec done
+#11 exporting attestation manifest sha256:3f362f6d853751b8220b2f2238ff1cf2d224ba2bfdfdc89cfb198f4a4faee3cd done
+#11 exporting manifest list sha256:72597dcc228365456476babf255d65e205169870f2367112cd532601f2444cd0 done
+#11 naming to docker.io/library/ipr-check-10166-1821727767-restore-app:latest done
+#11 unpacking to docker.io/library/ipr-check-10166-1821727767-restore-app:latest done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image ipr-check-10166-1821727767-restore-app Built
+ Container ipr-check-10166-1821727767-restore-redis-1 Creating
+ Container ipr-check-10166-1821727767-restore-redis-1 Created
+ Container ipr-check-10166-1821727767-restore-app-1 Creating
+ Container ipr-check-10166-1821727767-restore-app-1 Created
+ Container ipr-check-10166-1821727767-restore-redis-1 Starting
+ Container ipr-check-10166-1821727767-restore-redis-1 Started
+ Container ipr-check-10166-1821727767-restore-redis-1 Waiting
+ Container ipr-check-10166-1821727767-restore-redis-1 Healthy
+ Container ipr-check-10166-1821727767-restore-app-1 Starting
+ Container ipr-check-10166-1821727767-restore-app-1 Started
+ Container ipr-check-10166-1821727767-restore-app-1 Waiting
+ Container ipr-check-10166-1821727767-restore-redis-1 Waiting
+ Container ipr-check-10166-1821727767-restore-redis-1 Healthy
+ Container ipr-check-10166-1821727767-restore-app-1 Healthy
+Восстановлен count=4 из backups/ipr-check-10166-1821727767.tar
+
+Очистка проекта восстановления
+ Container ipr-check-10166-1821727767-restore-app-1 Stopping
+ Container ipr-check-10166-1821727767-restore-app-1 Stopped
+ Container ipr-check-10166-1821727767-restore-app-1 Removing
+ Container ipr-check-10166-1821727767-restore-app-1 Removed
+ Container ipr-check-10166-1821727767-restore-redis-1 Stopping
+ Container ipr-check-10166-1821727767-restore-redis-1 Stopped
+ Container ipr-check-10166-1821727767-restore-redis-1 Removing
+ Container ipr-check-10166-1821727767-restore-redis-1 Removed
+ Network ipr-check-10166-1821727767-restore_default Removing
+ Volume ipr-check-10166-1821727767-restore_redis_data Removing
+ Volume ipr-check-10166-1821727767-restore_redis_data Removed
+ Image ipr-check-10166-1821727767-restore-app:latest Removing
+ Image ipr-check-10166-1821727767-restore-app:latest Removed
+ Network ipr-check-10166-1821727767-restore_default Removed
+
+Проверка пройдена
